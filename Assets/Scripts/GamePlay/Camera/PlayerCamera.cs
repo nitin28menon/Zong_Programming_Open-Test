@@ -77,8 +77,9 @@ namespace ZPOT.GamePlay
         private void SetCameraRotation()
         {
             yRotation += xInputValue;
+            yRotation = Mathf.Clamp(yRotation, -33f, 33f);
             xRotation -= yInputValue;
-            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            xRotation = Mathf.Clamp(xRotation, -45f, 45f);
         }
 
         /// <summary>
