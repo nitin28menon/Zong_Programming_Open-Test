@@ -11,6 +11,10 @@ namespace ZPOT.Constant
 
         internal const float XSensitivity = 400f;
         internal const float YSensitivity = 400f;
+        internal const float XRotationMinClampValue = -45f;
+        internal const float XRotationMaxClampValue = 45f;
+        internal const float YRotationMinClampValue = -33f; 
+        internal const float YRotationMaxClampValue = 33f;
 
         #endregion
 

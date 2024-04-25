@@ -13,6 +13,10 @@ namespace ZPOT.GamePlay
 
         [SerializeField] private Transform orientation;
         [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private Animator animationController;
+        [SerializeField] private float groundForce = 10f;
+        [SerializeField] private float playerMoveSpeed = 7f;
+        [SerializeField] private Transform characterModel;
 
         #endregion
 
@@ -21,8 +25,7 @@ namespace ZPOT.GamePlay
         //movement variables
         private float groundDrag;
         private float playerHeight;
-        private float playerMoveSpeed;
-        private float groundForce = 10f;
+        // private float playerMoveSpeed;
         private bool isGrounded;
         private bool playerCanMove;
         private Vector3 moveDirection;
@@ -92,14 +95,13 @@ namespace ZPOT.GamePlay
         /// </summary>
         private void InitialiseVariables()
         {
-            playerMoveSpeed = Constants.PlayerMoveSpeed;
+            // playerMoveSpeed = Constants.PlayerMoveSpeed;
             jumpKey = Constants.PlayerJumpKey;
             playerHeight = Constants.PlayerHeight;
             groundDrag = Constants.GroundDrag;
             playerJumpForce = Constants.PlayerJumpForce;
             playerJumpCoolddown = Constants.PlayerJumpCoolddown;
             airMultiplier = Constants.AirMultiplier;
-            playerMoveSpeed = Constants.PlayerMoveSpeed;
             isGrounded = true;
             readyToJump = true;
             playerCanMove = true;
@@ -134,6 +136,7 @@ namespace ZPOT.GamePlay
         {
             if (Input.GetKey(jumpKey) && readyToJump && CheckForIsGrounded())
             {
+                animationController.SetTrigger("JumpTrigger");
                 readyToJump = false;
                 Jump();
                 Invoke(nameof(ResetJump), playerJumpCoolddown);
@@ -157,8 +160,10 @@ namespace ZPOT.GamePlay
         /// </summary>
         private void MovePlayer()
         {
+            animationController.SetBool("IsWalking", horizontalInput != 0 || verticalInput != 0);
             //calculate movement direction
             moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+            characterModel.LookAt(moveDirection);
             //add force based on wether the player is on ground or in air
             playerRB.AddForce((CheckForIsGrounded() ? groundForce : groundForce * airMultiplier) * playerMoveSpeed * moveDirection.normalized, ForceMode.Force);
         }

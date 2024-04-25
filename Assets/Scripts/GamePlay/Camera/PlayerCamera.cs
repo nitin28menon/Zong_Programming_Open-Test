@@ -19,6 +19,9 @@ namespace ZPOT.GamePlay
         private float xSensitivity, ySensitivity;
         private float xRotation, yRotation;
         private float xInputValue, yInputValue;
+        private float xRotationMinClampValue, xRotationMaxClampValue;
+        private float yRotationMinClampValue, yRotationMaxClampValue;
+
         private bool canRotateCamera;
 
         #endregion
@@ -51,6 +54,10 @@ namespace ZPOT.GamePlay
             canRotateCamera = true;
             xSensitivity = Constants.XSensitivity;
             ySensitivity = Constants.YSensitivity;
+            xRotationMinClampValue = Constants.XRotationMinClampValue;
+            xRotationMaxClampValue = Constants.XRotationMaxClampValue;
+            yRotationMinClampValue = Constants.YRotationMinClampValue;
+            yRotationMaxClampValue = Constants.YRotationMaxClampValue;
         }
 
         /// <summary>
@@ -77,9 +84,9 @@ namespace ZPOT.GamePlay
         private void SetCameraRotation()
         {
             yRotation += xInputValue;
-            yRotation = Mathf.Clamp(yRotation, -33f, 33f);
+            yRotation = Mathf.Clamp(yRotation, yRotationMinClampValue, yRotationMaxClampValue);
             xRotation -= yInputValue;
-            xRotation = Mathf.Clamp(xRotation, -45f, 45f);
+            xRotation = Mathf.Clamp(xRotation, xRotationMinClampValue, xRotationMaxClampValue);
         }
 
         /// <summary>
