@@ -13,8 +13,6 @@ namespace ZPOT.Constant
         internal const float YSensitivity = 400f;
         internal const float XRotationMinClampValue = -45f;
         internal const float XRotationMaxClampValue = 45f;
-        internal const float YRotationMinClampValue = -33f; 
-        internal const float YRotationMaxClampValue = 33f;
 
         #endregion
 
@@ -27,6 +25,15 @@ namespace ZPOT.Constant
         internal const float PlayerJumpCoolddown = .25f;
         internal const float AirMultiplier = .4f;
         internal const KeyCode PlayerJumpKey = KeyCode.Space;
+
+        #endregion
+        
+        #region Arrow
+
+        internal const float ArrowMovementDistance = .5f;
+        internal const float ArrowMovementSpeed = .8f;
+        internal const float ArrowRotationValue = .8f;
+        internal const float ArrowMovementDirection = 1f;
 
         #endregion
     }

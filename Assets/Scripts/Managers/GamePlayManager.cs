@@ -12,6 +12,7 @@ namespace ZPOT.Manager
 
         [SerializeField] private PlayerCamera playerCamera;
         [SerializeField] private PlayerMovement playerMovement;
+        [SerializeField] private Arrow arrow;
 
         #endregion
 
@@ -27,6 +28,7 @@ namespace ZPOT.Manager
         {
             playerCamera.Init();
             playerMovement.Init();
+            arrow.Init();
         }
     }
 }
